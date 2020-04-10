@@ -1,0 +1,14 @@
+---
+ - hosts: all
+   become: true
+
+   tasks:
+   - name: stop container
+     shell: docker stop test_demo
+   - name: remove container
+     shell: docker rm -f test_demo
+   - name: remove image
+     shell: docker image rm -f pulimihari/test_demo
+
+   - name: creating a docker container
+     shell: docker run -d --name test_demo -p 8090:8080 pulimihari/test_demo
